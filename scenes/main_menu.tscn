@@ -1,0 +1,476 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://assets/square/elephant.png" type="Texture" id=1]
+[ext_resource path="res://scripts/lobby.gd" type="Script" id=2]
+[ext_resource path="res://scripts/main.gd" type="Script" id=3]
+[ext_resource path="res://scripts/host_options.gd" type="Script" id=4]
+[ext_resource path="res://scripts/main_menu.gd" type="Script" id=5]
+[ext_resource path="res://scripts/join_options.gd" type="Script" id=6]
+[ext_resource path="res://scenes/character_portrait.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/characters.gd" type="Script" id=9]
+[ext_resource path="res://assets/square/hippo.png" type="Texture" id=10]
+[ext_resource path="res://assets/square/giraffe.png" type="Texture" id=11]
+[ext_resource path="res://assets/square/parrot.png" type="Texture" id=12]
+[ext_resource path="res://assets/square/pig.png" type="Texture" id=13]
+[ext_resource path="res://assets/square/panda.png" type="Texture" id=14]
+[ext_resource path="res://assets/square/penguin.png" type="Texture" id=15]
+[ext_resource path="res://assets/square/monkey.png" type="Texture" id=16]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 248.0, 16.0, 128.0 ],
+"_edit_vertical_guides_": [ 16.0, 1008.0, 512.0, 256.0, 768.0, 128.0, 384.0, 640.0, 896.0 ]
+}
+
+[node name="Main" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="Buttons" type="Node2D" parent="Main"]
+
+[node name="Join" type="Button" parent="Main/Buttons"]
+margin_left = 896.0
+margin_top = 352.0
+margin_right = 1008.0
+margin_bottom = 392.0
+text = "Join"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Host" type="Button" parent="Main/Buttons"]
+margin_left = 896.0
+margin_top = 408.0
+margin_right = 1008.0
+margin_bottom = 448.0
+text = "Host"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="Button" parent="Main/Buttons"]
+margin_left = 896.0
+margin_top = 464.0
+margin_right = 1008.0
+margin_bottom = 504.0
+text = "Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="Main/Buttons"]
+margin_left = 896.0
+margin_top = 520.0
+margin_right = 1008.0
+margin_bottom = 560.0
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lobby" type="Node2D" parent="."]
+visible = false
+script = ExtResource( 2 )
+
+[node name="Characters" type="GridContainer" parent="Lobby"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 492.0
+margin_bottom = 244.0
+custom_constants/vseparation = 20
+custom_constants/hseparation = 20
+columns = 4
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="CharacterPortrait" parent="Lobby/Characters" instance=ExtResource( 7 )]
+icon = ExtResource( 1 )
+
+[node name="CharacterPortrait2" parent="Lobby/Characters" instance=ExtResource( 7 )]
+margin_left = 124.0
+margin_right = 228.0
+icon = ExtResource( 11 )
+
+[node name="CharacterPortrait3" parent="Lobby/Characters" instance=ExtResource( 7 )]
+margin_left = 248.0
+margin_right = 352.0
+icon = ExtResource( 10 )
+
+[node name="CharacterPortrait4" parent="Lobby/Characters" instance=ExtResource( 7 )]
+margin_left = 372.0
+margin_right = 476.0
+icon = ExtResource( 16 )
+
+[node name="CharacterPortrait5" parent="Lobby/Characters" instance=ExtResource( 7 )]
+margin_top = 124.0
+margin_bottom = 228.0
+icon = ExtResource( 14 )
+
+[node name="CharacterPortrait6" parent="Lobby/Characters" instance=ExtResource( 7 )]
+margin_left = 124.0
+margin_top = 124.0
+margin_right = 228.0
+margin_bottom = 228.0
+icon = ExtResource( 12 )
+
+[node name="CharacterPortrait7" parent="Lobby/Characters" instance=ExtResource( 7 )]
+margin_left = 248.0
+margin_top = 124.0
+margin_right = 352.0
+margin_bottom = 228.0
+icon = ExtResource( 15 )
+
+[node name="CharacterPortrait8" parent="Lobby/Characters" instance=ExtResource( 7 )]
+margin_left = 372.0
+margin_top = 124.0
+margin_right = 476.0
+margin_bottom = 228.0
+icon = ExtResource( 13 )
+
+[node name="Buttons" type="Node2D" parent="Lobby"]
+
+[node name="Server" type="Node2D" parent="Lobby/Buttons"]
+visible = false
+
+[node name="Start" type="Button" parent="Lobby/Buttons/Server"]
+margin_left = 896.0
+margin_top = 464.0
+margin_right = 1008.0
+margin_bottom = 504.0
+text = "Start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Client" type="Node2D" parent="Lobby/Buttons"]
+visible = false
+
+[node name="Ready" type="Button" parent="Lobby/Buttons/Client"]
+margin_left = 896.0
+margin_top = 464.0
+margin_right = 1008.0
+margin_bottom = 504.0
+toggle_mode = true
+text = "Ready"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Leave" type="Button" parent="Lobby/Buttons"]
+margin_left = 896.0
+margin_top = 520.0
+margin_right = 1008.0
+margin_bottom = 560.0
+text = "Leave"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Members" type="Panel" parent="Lobby"]
+margin_left = 16.0
+margin_top = 264.0
+margin_right = 288.0
+margin_bottom = 560.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Count" type="Label" parent="Lobby/Members"]
+margin_left = 46.0
+margin_right = 230.0
+margin_bottom = 40.0
+text = "Players (X/X)"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Scroll" type="ScrollContainer" parent="Lobby/Members"]
+margin_left = 19.0
+margin_top = 40.0
+margin_right = 256.0
+margin_bottom = 276.0
+
+[node name="List" type="VBoxContainer" parent="Lobby/Members/Scroll"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Chat" type="Panel" parent="Lobby"]
+margin_left = 301.0
+margin_top = 264.0
+margin_right = 880.0
+margin_bottom = 560.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Input" type="LineEdit" parent="Lobby/Chat"]
+margin_left = 16.0
+margin_top = 248.0
+margin_right = 564.0
+margin_bottom = 288.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Scroll" type="ScrollContainer" parent="Lobby/Chat"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 564.0
+margin_bottom = 240.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="History" type="VBoxContainer" parent="Lobby/Chat/Scroll"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Portrait" type="Panel" parent="Lobby"]
+margin_left = 896.0
+margin_top = 264.0
+margin_right = 1008.0
+margin_bottom = 376.0
+size_flags_horizontal = 5
+size_flags_vertical = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Lobby/Portrait"]
+position = Vector2( 56, 56 )
+scale = Vector2( 0.3, 0.3 )
+
+[node name="GameOptions" type="Panel" parent="Lobby"]
+margin_left = 512.0
+margin_top = 16.0
+margin_right = 1008.0
+margin_bottom = 244.0
+
+[node name="JoinOptions" type="Panel" parent="."]
+margin_left = 120.0
+margin_top = 96.0
+margin_right = 872.0
+margin_bottom = 560.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RoomCode" type="Node2D" parent="JoinOptions"]
+
+[node name="Label" type="Label" parent="JoinOptions/RoomCode"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 176.0
+margin_bottom = 48.0
+text = "Room Code:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RCInput" type="LineEdit" parent="JoinOptions/RoomCode"]
+margin_left = 168.0
+margin_top = 8.0
+margin_right = 408.0
+margin_bottom = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JoinRCButton" type="Button" parent="JoinOptions/RoomCode"]
+margin_left = 424.0
+margin_top = 8.0
+margin_right = 494.0
+margin_bottom = 48.0
+text = "Join"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Browser" type="Node2D" parent="JoinOptions"]
+
+[node name="MapButton" type="Button" parent="JoinOptions/Browser"]
+margin_left = 8.0
+margin_top = 64.0
+margin_right = 104.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 256, 40 )
+text = "Map"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayersButton" type="Button" parent="JoinOptions/Browser"]
+margin_left = 280.0
+margin_top = 64.0
+margin_right = 512.0
+margin_bottom = 104.0
+text = "Players"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PingButton" type="Button" parent="JoinOptions/Browser"]
+margin_left = 560.0
+margin_top = 64.0
+margin_right = 664.0
+margin_bottom = 104.0
+text = "Ping"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="JoinOptions/Browser"]
+margin_left = 16.0
+margin_top = 104.0
+margin_right = 704.0
+margin_bottom = 408.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LobbyList" type="VBoxContainer" parent="JoinOptions/Browser/ScrollContainer"]
+margin_right = 688.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cancel" type="Button" parent="JoinOptions"]
+margin_left = 16.0
+margin_top = 408.0
+margin_right = 152.0
+margin_bottom = 448.0
+text = "Cancel"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Refresh" type="Button" parent="JoinOptions"]
+margin_left = 592.0
+margin_top = 408.0
+margin_right = 728.0
+margin_bottom = 448.0
+text = "Refresh"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HostOptions" type="Panel" parent="."]
+visible = false
+margin_left = 256.0
+margin_top = 128.0
+margin_right = 768.0
+margin_bottom = 512.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Public" type="Button" parent="HostOptions"]
+margin_left = 8.0
+margin_top = 120.0
+margin_right = 144.0
+margin_bottom = 160.0
+toggle_mode = true
+text = "Public"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Friends" type="Button" parent="HostOptions"]
+margin_left = 168.0
+margin_top = 120.0
+margin_right = 336.0
+margin_bottom = 160.0
+toggle_mode = true
+pressed = true
+text = "Friends-Only"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Private" type="Button" parent="HostOptions"]
+margin_left = 360.0
+margin_top = 120.0
+margin_right = 505.0
+margin_bottom = 160.0
+toggle_mode = true
+text = "Private"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Confirm" type="Button" parent="HostOptions"]
+margin_left = 368.0
+margin_top = 328.0
+margin_right = 504.0
+margin_bottom = 368.0
+text = "Confirm"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cancel" type="Button" parent="HostOptions"]
+margin_left = 8.0
+margin_top = 328.0
+margin_right = 144.0
+margin_bottom = 368.0
+text = "Cancel"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Players" type="Label" parent="HostOptions"]
+margin_left = 184.0
+margin_top = 192.0
+margin_right = 320.0
+margin_bottom = 232.0
+text = "Players"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Count" type="HSlider" parent="HostOptions/Players"]
+margin_left = -152.0
+margin_top = 56.0
+margin_right = 296.0
+margin_bottom = 72.0
+min_value = 1.0
+max_value = 4.0
+value = 2.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Steps" type="Label" parent="HostOptions/Players/Count"]
+margin_left = -8.0
+margin_top = 16.0
+margin_right = 448.0
+margin_bottom = 56.0
+text = "1                      2                      3                     4"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Main/Buttons/Join" to="Main" method="_on_Join_pressed"]
+[connection signal="pressed" from="Main/Buttons/Host" to="Main" method="_on_Host_pressed"]
+[connection signal="pressed" from="Main/Buttons/Settings" to="Main" method="_on_Settings_pressed"]
+[connection signal="pressed" from="Main/Buttons/Quit" to="Main" method="_on_Quit_pressed"]
+[connection signal="pressed" from="Lobby/Buttons/Leave" to="Lobby" method="_on_Leave_pressed"]
+[connection signal="text_entered" from="Lobby/Chat/Input" to="Lobby" method="_on_Input_text_entered"]
+[connection signal="visibility_changed" from="JoinOptions" to="JoinOptions" method="_on_visibility_changed"]
+[connection signal="pressed" from="JoinOptions/RoomCode/JoinRCButton" to="JoinOptions" method="_on_JoinRCButton_pressed"]
+[connection signal="pressed" from="JoinOptions/Cancel" to="JoinOptions" method="_on_Cancel_pressed"]
+[connection signal="pressed" from="JoinOptions/Refresh" to="JoinOptions" method="_on_Refresh_pressed"]
+[connection signal="pressed" from="HostOptions/Confirm" to="HostOptions" method="_on_Confirm_pressed"]
+[connection signal="pressed" from="HostOptions/Cancel" to="HostOptions" method="_on_Cancel_pressed"]

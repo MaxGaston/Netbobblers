@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/lobby_member.gd" type="Script" id=1]
+
+[node name="LobbyMember" type="Control"]
+margin_right = 168.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 168, 40 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Nameplate" type="Button" parent="."]
+margin_right = 200.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+clip_text = true
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mute" type="Button" parent="Nameplate"]
+visible = false
+margin_top = -40.0
+margin_right = 72.0
+toggle_mode = true
+text = "Mute"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Kick" type="Button" parent="Nameplate"]
+visible = false
+margin_left = 72.0
+margin_top = -40.0
+margin_right = 135.0
+text = "Kick"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ban" type="Button" parent="Nameplate"]
+visible = false
+margin_left = 135.0
+margin_top = -40.0
+margin_right = 191.0
+text = "Ban"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox" type="CheckBox" parent="."]
+margin_left = 200.0
+margin_right = 224.0
+margin_bottom = 40.0
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Nameplate" to="." method="_on_Nameplate_pressed"]
+[connection signal="toggled" from="Nameplate/Mute" to="." method="_on_Mute_toggled"]
+[connection signal="pressed" from="Nameplate/Kick" to="." method="_on_Kick_pressed"]
+[connection signal="pressed" from="Nameplate/Ban" to="." method="_on_Ban_pressed"]
