@@ -72,7 +72,6 @@ func _on_lobby_join_requested(lobby_id: int, friend_id: int):
 	join_lobby(lobby_id)
 
 
-
 func _on_lobby_data_update(success: bool, lobby_id: int, member_id: int, key: int) -> void:
 	pass
 
@@ -106,7 +105,9 @@ func join_lobby(lobby_id: int) -> void:
 	Steam.joinLobby(lobby_id)
 
 
-func send_chat_message(msg: String):
+func send_chat_message(msg: String, sender_id: int = 0):
+	if sender_id != 0:
+		msg = Steam.getFriendPersonaName(sender_id) + ": " + msg
 	var sent = Steam.sendLobbyChatMsg(Global.lobby_id, msg)
 	if not sent:
 		print("Error sending chat msg")
@@ -116,8 +117,11 @@ func _on_lobby_message(result: bool, sender_id: int, msg: String, type: int) -> 
 	for member in Global.lobby_members:
 		if member.steam_id == sender_id and member['muted'] == true:
 			return
-	msg = Steam.getFriendPersonaName(sender_id) + ": " + msg
 	chat_print(msg)
+
+
+func _on_lobby_invite(inviter: int, lobby: int, game: int):
+	pass
 
 
 func chat_print(msg: String) -> void:
@@ -128,6 +132,8 @@ func chat_print(msg: String) -> void:
 
 func update_lobby_members() -> void:
 	Global.lobby_members.clear()
+	for child in member_list.get_children():
+		member_list.remove_child(child)
 	
 	var num_members = Steam.getNumLobbyMembers(Global.lobby_id)
 	member_count.text = "Players (%d/%d)" % [num_members, Global.member_limit]
@@ -135,7 +141,6 @@ func update_lobby_members() -> void:
 	for i in range(0, num_members):
 		var member_steam_id = Steam.getLobbyMemberByIndex(Global.lobby_id, i)
 		var member_steam_name = Steam.getFriendPersonaName(member_steam_id)
-		print(member_steam_id)
 		add_lobby_member(member_steam_id, member_steam_name)
 
 
